@@ -1,1 +1,3 @@
-print "Hello world"
+def somefunction():
+	a = "Hello world"
+	return a
