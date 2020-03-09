@@ -11,3 +11,6 @@ jobs:
           name: Install and Make
           command: npm install && make test-coverage
       - coveralls/upload
+
+service_name: CircleCI
+repo_token: kkyBkYViCg8ulotHaaFB2SOBdPzQRxlro
