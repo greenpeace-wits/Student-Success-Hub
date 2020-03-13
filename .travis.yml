@@ -9,4 +9,5 @@ python:
   
 # command to run tests
 script:
+  - make build
   - python helloworld.py
