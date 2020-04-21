@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>sign in</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<app-logo></app-logo>
+  <form>
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Wits Email</ion-label>
+        <ion-input type="email" name="witsemail" [(ngModel)]="postData.witsemail"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input type="password" name="password" [(ngModel)]="postData.password"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <a href=''>Have you forgotten your password?</a>
+      </ion-item>
+
+        <ion-button expand="block" (click)="loginAction()">Sign In</ion-button>
+        <ion-button expand="block">Sign In with Moodle</ion-button>
+    </ion-list>
+  </form>
+</ion-content>
