@@ -7,7 +7,7 @@ class LoginPage extends StatefulWidget{
 }
 
 class _LoginPageState extends State<LoginPage>{
-  String _email, _password;
+
   bool _isHidden = true;
 
   /*void _enterHome(){

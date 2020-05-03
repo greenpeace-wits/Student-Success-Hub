@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { HttpService } from './http.service';
 import { StorageService } from './storage.service';
 import { Observable, BehaviorSubject } from 'rxjs';
@@ -20,7 +21,6 @@ export class AuthService {
 
   getUserData() {
     this.storageService.get(AuthConstants.AUTH).then(res => {
-      console.log(res)
       this.userData$.next(res);
     })
   }
