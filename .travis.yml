@@ -16,9 +16,8 @@ cache:
 #   - npm install
 
 before_script:
-  install:
-    - npm install
   - cd demo/ionic-dev/greenpeace
+  - npm install
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
 script:
