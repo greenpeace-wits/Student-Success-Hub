@@ -1,5 +1,4 @@
 dist: trusty
-sudo: false
 
 language: node_js
 node_js:
@@ -8,18 +7,14 @@ node_js:
 addons:
   chrome: stable
 
-cache:
-  directories:
-     - ./node_modules
+before_install:
+  - cd demo/ionic-dev/greenpeace
 
-# install:
-#   - npm install
+install:
+  - npm install
 
 before_script:
-  - cd demo/ionic-dev/greenpeace
-  - npm install
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
 script:
-  - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-  # - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
+  - npm run test -- --no-watch --code-coverage --reporters=coverage,coveralls --no-progress --browsers=ChromeHeadlessCI
