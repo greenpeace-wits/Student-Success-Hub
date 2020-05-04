@@ -24,7 +24,7 @@ module.exports = function (config) {
     },
     coverageReporter: {
       type: 'lcov', // lcov or lcovonly are required for generating lcov.info files
-      dir: 'coverage/'
+      dir: require('path').join(__dirname,'../coverage')
     },
     reporters: ['progress', 'kjhtml','coverage','coveralls'],
     port: 9876,
