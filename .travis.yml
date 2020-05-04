@@ -17,4 +17,4 @@ before_script:
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
 script:
-  - npm run test -- --no-watch --code-coverage --reporters coveralls --no-progress --browsers=ChromeHeadlessCI
+  - npm run test -- --no-watch --code-coverage --reporters=coverage,coveralls --no-progress --browsers=ChromeHeadlessCI
