@@ -13,4 +13,4 @@ jobs:
       - coveralls/upload
 
 service_name: CircleCI
-repo_token: kkyBkYViCg8ulotHaaFB2SOBdPzQRxlro
+repo_token: Mg64ifEkIZJgpUlbyJZVTQKGoeQA2J0I9
