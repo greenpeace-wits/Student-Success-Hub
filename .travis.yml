@@ -18,4 +18,5 @@ before_script:
 
 script:
   - npm run test -- --no-watch --code-coverage --no-progress --browsers=ChromeHeadlessCI
+  - npm run istanbul cover node_modules/jasmine/bin/jasmine.js
   - cat /node_modules/coverage/lcov.info | coveralls && rm -rf ./coverage
