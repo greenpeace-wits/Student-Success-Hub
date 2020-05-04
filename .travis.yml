@@ -6,11 +6,7 @@ node_js:
   - "10"
 
 addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
+  chrome: stable
 
 cache:
   directories:
@@ -21,6 +17,7 @@ install:
 
 before_script:
   - cd demo/ionic-dev/greenpeace
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
 script:
   - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
