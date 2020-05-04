@@ -13,7 +13,7 @@ cache:
      - ./node_modules
 
 install:
-  - npm install
+  - npm install -g angular-cli
 
 before_script:
   - cd demo/ionic-dev/greenpeace
