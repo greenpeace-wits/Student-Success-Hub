@@ -22,10 +22,6 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true
     },
-    coverageReporter: {
-      type: 'lcov', // lcov or lcovonly are required for generating lcov.info files
-      dir: require('path').join(__dirname,'../coverage')
-    },
     reporters: ['progress', 'kjhtml','coverage','coveralls'],
     port: 9876,
     colors: true,

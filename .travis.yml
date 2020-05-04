@@ -7,10 +7,6 @@ node_js:
 addons:
   chrome: stable
 
-cache:
-  directories:
-     - /node_modules
-
 before_install:
   - cd demo/ionic-dev/greenpeace
 
@@ -21,10 +17,4 @@ before_script:
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
 script:
-  - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-  - npm istanbul cover jasmine-node --captureExceptions spec/ 
-  # - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
-
-after_success:
-    - cat /coverage/lcov.info | /node_modules/coveralls/bin/coveralls.js
-    - rm -rf /coverage
+  - npm run test -- --no-watch --code-coverage --no-progress --browsers=ChromeHeadlessCI
