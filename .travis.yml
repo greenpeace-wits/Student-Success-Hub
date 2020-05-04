@@ -22,7 +22,7 @@ before_script:
 
 script:
   - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-  - npm run /node_modules/.bin/istanbul cover jasmine-node --captureExceptions spec/ 
+  - npm run /node_modules/.bin/istanbul.bin cover jasmine-node --captureExceptions spec/ 
   # - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
 
 after_success:
