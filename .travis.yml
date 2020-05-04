@@ -12,10 +12,12 @@ cache:
   directories:
      - ./node_modules
 
-install:
-  - npm install -g angular-cli
+# install:
+#   - npm install
 
 before_script:
+  install:
+    - npm install
   - cd demo/ionic-dev/greenpeace
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 
