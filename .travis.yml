@@ -18,3 +18,4 @@ before_script:
 
 script:
   - npm run test -- --no-watch --code-coverage --reporters=coverage,coveralls --no-progress --browsers=ChromeHeadlessCI
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
