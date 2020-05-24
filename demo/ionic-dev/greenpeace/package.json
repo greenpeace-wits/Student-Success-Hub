@@ -8,6 +8,9 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
+    "test --no-watch --code-coverage": "ng test --no-watch --code-coverage",
+    "test --code-coverage": "ng test --code-coverage",
+    "test --no-watch": "ng test --no-watch",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -40,6 +43,7 @@
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
+    "@types/selenium-webdriver": "^4.0.9",
     "codelyzer": "^5.0.0",
     "coveralls": "^3.1.0",
     "jasmine-core": "~3.4.0",
@@ -53,7 +57,7 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "nodeunit": "^0.11.3",
-    "protractor": "^6.0.0",
+    "protractor": "^7.0.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"

@@ -20,7 +20,15 @@ describe('IndexPage', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
+  it('should be created', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have at least one <ion-content> tag', () => {
+    expect(fixture.nativeElement.querySelector('ion-content')).toBeTruthy();
+  });
+
+  it('should have at least one <router-outlet> tag', () => {
+    expect(fixture.nativeElement.querySelector('router-outlet')).toBeTruthy();
   });
 });

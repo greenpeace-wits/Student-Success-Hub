@@ -46,11 +46,11 @@ export class SignInPage implements OnInit {
             this.router.navigate(['home']);
           }
           else {
-            this.toastService.presentToast("Incorrect username or password");
+          this.toastService.presentToast("Incorrect username or password");
           }
         },
         (error: any) => {
-          this.toastService.presentToast("Network connection error.")
+        this.toastService.presentToast("Network connection error.")
       })
     }
     else {

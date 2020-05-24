@@ -5,7 +5,7 @@ import { HomePage } from './home.page';
 import { HomeGuard } from '../guards/home.guard';
 import { UserDataResolver } from '../resolvers/userData.resolver';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     component: HomePage,
