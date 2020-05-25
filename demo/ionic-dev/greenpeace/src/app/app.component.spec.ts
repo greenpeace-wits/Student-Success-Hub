@@ -58,7 +58,7 @@ describe('AppRoutingModule', () => {
   }));
 
   it('should have 3 routes', () => {
-    expect(router.config.length).toBe(3);
+    expect(router.config.length).toBe(2);
   });
 
   it('should have a / route', () => {
@@ -67,10 +67,6 @@ describe('AppRoutingModule', () => {
 
   it('should have a /home path', () => {
     expect(router.config[1].path).toBe('home');
-  });
-
-  it('should have a /settings path', () => {
-    expect(router.config[2].path).toBe('settings');
   });
 
   describe('/ route', () => {
@@ -82,12 +78,6 @@ describe('AppRoutingModule', () => {
   describe('/home route', () => {
     it('should have a loadChildren() function', () => {
       expect(router.config[1].loadChildren()).toBeDefined();
-    });
-  });
-
-  describe('/settings route', () => {
-    it('should have a loadChildren() function', () => {
-      expect(router.config[2].loadChildren()).toBeDefined();
     });
   });
 
