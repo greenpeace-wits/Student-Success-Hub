@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IndexPage } from './index.page';
 import { IndexGuard } from '../guards/index.guard';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     component: IndexPage,

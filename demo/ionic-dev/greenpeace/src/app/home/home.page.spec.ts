@@ -7,12 +7,13 @@
 */
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from "@angular/router/testing";
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { HomePage } from './home.page';
 import { HomeGuard } from '../guards/home.guard';
-import { element } from 'protractor';
+import { routes } from './home-routing.module';
+import { Router } from '@angular/router';
 
 describe('HomePage', () => {
   let component: HomePage;
@@ -165,3 +166,53 @@ describe('HomePage', () => {
   });
 });
 
+describe('HomeRoutingModule', () => {
+  let router;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [HomePage],
+      imports: [RouterTestingModule.withRoutes(routes)],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    }).compileComponents();
+    router = TestBed.get(Router);
+  }));
+
+  it('should have 3 routes', () => {
+    expect(router.config[0].children.length).toBe(4);
+  });
+
+  it('should have a /dashboard route', () => {
+    expect(router.config[0].children[0].path).toBe('dashboard');
+  });
+
+  it('should have a /course-management path', () => {
+    expect(router.config[0].children[2].path).toBe('course-management');
+  });
+
+  it('should have a /settings path', () => {
+    expect(router.config[0].children[3].path).toBe('settings');
+  });
+
+  it('should redirect from / to /dashboard', () => {
+    expect(router.config[0].children[1].redirectTo).toBe('dashboard');
+  })
+
+  describe('/dashboard route', () => {
+    it('should have a loadChildren() function', () => {
+      expect(router.config[0].children[0].loadChildren()).toBeDefined();
+    });
+  });
+
+  describe('/course-management route', () => {
+    it('should have a loadChildren() function', () => {
+      expect(router.config[0].children[2].loadChildren()).toBeDefined();
+    });
+  });
+
+  describe('/settings route', () => {
+    it('should have a loadChildren() function', () => {
+      expect(router.config[0].children[3].loadChildren()).toBeDefined();
+    });
+  });
+});

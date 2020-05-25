@@ -3,6 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { IndexPage } from './index.page';
+import { routes } from './index-routing.module';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('IndexPage', () => {
   let component: IndexPage;
@@ -30,5 +33,42 @@ describe('IndexPage', () => {
 
   it('should have at least one <router-outlet> tag', () => {
     expect(fixture.nativeElement.querySelector('router-outlet')).toBeTruthy();
+  });
+});
+
+describe('IndexRoutingModule', () => {
+  let router;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [IndexPage],
+      imports: [RouterTestingModule.withRoutes(routes)],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    }).compileComponents();
+    router = TestBed.get(Router);
+  }));
+
+  it('should have 3 routes', () => {
+    expect(router.config[0].children.length).toBe(2);
+  });
+
+  it('should have a /signin route', () => {
+    expect(router.config[0].children[0].path).toBe('signin');
+  });
+
+  it('should have a / path', () => {
+    expect(router.config[0].children[1].path).toBe('');
+  });
+
+  describe('/signin route', () => {
+    it('should have a loadChildren() function', () => {
+      expect(router.config[0].children[0].loadChildren()).toBeDefined();
+    });
+  });
+
+  describe('/ route', () => {
+    it('should have a loadChildren() function', () => {
+      expect(router.config[0].children[1].loadChildren()).toBeDefined();
+    });
   });
 });

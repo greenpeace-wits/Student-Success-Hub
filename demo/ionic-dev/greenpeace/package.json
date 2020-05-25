@@ -8,9 +8,9 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "test --no-watch --code-coverage": "ng test --no-watch --code-coverage",
-    "test --code-coverage": "ng test --code-coverage",
-    "test --no-watch": "ng test --no-watch",
+    "test-no-watch-code-coverage": "ng test --no-watch --code-coverage",
+    "test-code-coverage": "ng test --code-coverage",
+    "test-no-watch": "ng test --no-watch",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -21,6 +21,7 @@
     "@angular/forms": "~8.2.14",
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
+    "@angular/pwa": "^0.901.7",
     "@angular/router": "~8.2.14",
     "@capacitor/core": "2.0.1",
     "@ionic-native/core": "^5.0.7",
@@ -28,12 +29,13 @@
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^5.0.0",
     "core-js": "^2.5.4",
+    "npm-force-resolutions": "0.0.3",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.20",
+    "@angular-devkit/build-angular": "^0.803.24",
     "@angular/cli": "~8.3.23",
     "@angular/compiler": "~8.2.14",
     "@angular/compiler-cli": "~8.2.14",
@@ -62,5 +64,8 @@
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "resolutions": {
+    "@babel/preset-env": "7.5.5"
+  }
 }

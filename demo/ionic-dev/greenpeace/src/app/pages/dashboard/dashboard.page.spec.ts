@@ -32,7 +32,7 @@ describe('DashboardPage', () => {
   });
 
   it('should have a displayUserData property', () => {
-    expect(component.displayUserData).toBeTruthy;
+    expect(component.displayUserData).toBeDefined();
   });
 
   it('should have at least one <ion-header> tag', () => {
