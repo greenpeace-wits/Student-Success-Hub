@@ -18,7 +18,29 @@ describe('CourseManagementPage', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
+  it('should be created', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have a ngOnInit() function', () => {
+    expect(component.ngOnInit).toBeTruthy();
+  });
+
+  it('should have at least one <ion-header> tag', () => {
+    expect(fixture.nativeElement.querySelector('ion-header')).toBeTruthy();
+  });
+
+  it('should have at least one <ion-toolbar> tag', () => {
+    expect(fixture.nativeElement.querySelector('ion-toolbar')).toBeTruthy();
+  });
+
+  it('should have at least one <ion-title> tag', () => {
+    expect(fixture.nativeElement.querySelector('ion-title')).toBeTruthy();
+  });
+
+  describe('<ion-title>', () => {
+    it('should have the text "Course Management"', () => {
+      expect(fixture.nativeElement.querySelector('ion-title').textContent).toBe("Course Management");
+    });
+  })
 });

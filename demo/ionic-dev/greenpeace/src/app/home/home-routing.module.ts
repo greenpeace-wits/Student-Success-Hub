@@ -5,9 +5,9 @@ import { HomePage } from './home.page';
 import { HomeGuard } from '../guards/home.guard';
 import { UserDataResolver } from '../resolvers/userData.resolver';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
-    path: '',
+    path: 'dashboard',
     component: HomePage,
     canActivate: [HomeGuard],
     resolve: {
@@ -22,9 +22,8 @@ const routes: Routes = [
       },
       {
         path: '',
-        loadChildren: () => import('../pages/dashboard/dashboard.module').then(
-          m => m.DashboardPageModule
-        )
+        redirectTo: 'dashboard',
+        pathMatch: 'full'
       },
       {
         path: 'course-management',
