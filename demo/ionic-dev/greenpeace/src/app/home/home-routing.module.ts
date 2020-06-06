@@ -7,7 +7,7 @@ import { UserDataResolver } from '../resolvers/userData.resolver';
 
 export const routes: Routes = [
   {
-    path: 'dashboard',
+    path: '',
     component: HomePage,
     canActivate: [HomeGuard],
     resolve: {

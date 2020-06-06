@@ -1,0 +1,201 @@
+-- MySQL dump 10.13  Distrib 5.7.29, for Linux (x86_64)
+--
+-- Host: localhost    Database: SD_PROJECT
+-- ------------------------------------------------------
+-- Server version	5.7.29-0ubuntu0.18.04.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `COURSES`
+--
+
+DROP TABLE IF EXISTS `COURSES`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `COURSES` (
+  `COURSE_ID` int(9) NOT NULL AUTO_INCREMENT,
+  `DEPT_ID` int(11) DEFAULT NULL,
+  `COURSE_NAME` varchar(50) DEFAULT NULL,
+  `COURSE_ABBR` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`COURSE_ID`),
+  UNIQUE KEY `COURSE_ABBR` (`COURSE_ABBR`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `COURSES`
+--
+
+LOCK TABLES `COURSES` WRITE;
+/*!40000 ALTER TABLE `COURSES` DISABLE KEYS */;
+INSERT INTO `COURSES` VALUES (1,1,'Computational and Applied Mathematics','APPM'),(2,1,'Basic computer Oranization','BCO'),(3,1,'Database Fundamentals','DBF'),(4,1,'Maxilloracial Pathology','MP');
+/*!40000 ALTER TABLE `COURSES` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `DEPARTMENT`
+--
+
+DROP TABLE IF EXISTS `DEPARTMENT`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `DEPARTMENT` (
+  `DEPT_ID` int(4) NOT NULL AUTO_INCREMENT,
+  `DEPT_NAME` varchar(65) NOT NULL,
+  `DEPT_ABB` char(10) DEFAULT NULL,
+  `DEPT_HEAD` varchar(60) DEFAULT NULL,
+  PRIMARY KEY (`DEPT_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `DEPARTMENT`
+--
+
+LOCK TABLES `DEPARTMENT` WRITE;
+/*!40000 ALTER TABLE `DEPARTMENT` DISABLE KEYS */;
+INSERT INTO `DEPARTMENT` VALUES (1,'Computational and Applied Mathematics','CSAM','Gavin Zulu'),(2,'Department of Oral Pathology','DOP','Rebecca Muller');
+/*!40000 ALTER TABLE `DEPARTMENT` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `EDUCATORS`
+--
+
+DROP TABLE IF EXISTS `EDUCATORS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `EDUCATORS` (
+  `STAFF_NO` int(11) DEFAULT NULL,
+  `COURSE_ABBR` varchar(10) DEFAULT NULL,
+  `DEPT_ID` int(11) DEFAULT NULL,
+  KEY `STAFF_NO` (`STAFF_NO`),
+  KEY `COURSE_ABBR` (`COURSE_ABBR`),
+  KEY `DEPT_ID` (`DEPT_ID`),
+  CONSTRAINT `EDUCATORS_ibfk_1` FOREIGN KEY (`STAFF_NO`) REFERENCES `STAFF` (`STAFF_NO`),
+  CONSTRAINT `EDUCATORS_ibfk_2` FOREIGN KEY (`COURSE_ABBR`) REFERENCES `COURSES` (`COURSE_ABBR`),
+  CONSTRAINT `EDUCATORS_ibfk_3` FOREIGN KEY (`DEPT_ID`) REFERENCES `DEPARTMENT` (`DEPT_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `EDUCATORS`
+--
+
+LOCK TABLES `EDUCATORS` WRITE;
+/*!40000 ALTER TABLE `EDUCATORS` DISABLE KEYS */;
+INSERT INTO `EDUCATORS` VALUES (530478,'BCO',1),(691525,'MP',2);
+/*!40000 ALTER TABLE `EDUCATORS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `MARKS`
+--
+
+DROP TABLE IF EXISTS `MARKS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `MARKS` (
+  `STU_NUMBER` int(11) NOT NULL,
+  `COURSE_ABBR` varchar(10) NOT NULL,
+  `TEST_1` int(2) DEFAULT NULL,
+  `TEST_2` int(2) DEFAULT NULL,
+  `TUT_TEST1` int(2) DEFAULT NULL,
+  `TUT_TEST2` int(2) DEFAULT NULL,
+  `ASSIGNMENT` int(2) DEFAULT NULL,
+  `EXAM` int(2) DEFAULT NULL,
+  PRIMARY KEY (`STU_NUMBER`,`COURSE_ABBR`),
+  KEY `COURSE_ABBR` (`COURSE_ABBR`),
+  CONSTRAINT `MARKS_ibfk_1` FOREIGN KEY (`STU_NUMBER`) REFERENCES `STUDENT` (`STU_NUMBER`),
+  CONSTRAINT `MARKS_ibfk_2` FOREIGN KEY (`COURSE_ABBR`) REFERENCES `COURSES` (`COURSE_ABBR`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `MARKS`
+--
+
+LOCK TABLES `MARKS` WRITE;
+/*!40000 ALTER TABLE `MARKS` DISABLE KEYS */;
+INSERT INTO `MARKS` VALUES (1326514,'BCO',65,NULL,85,NULL,NULL,NULL),(1472165,'BCO',63,NULL,80,NULL,NULL,NULL),(1876224,'MP',32,NULL,52,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `MARKS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `STAFF`
+--
+
+DROP TABLE IF EXISTS `STAFF`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `STAFF` (
+  `STAFF_NO` int(9) NOT NULL,
+  `STAFF_FNAME` varchar(25) NOT NULL,
+  `STAFF_LNAME` varchar(25) NOT NULL,
+  `PASSWORD` varchar(90) NOT NULL,
+  `STAFF_INIT` char(3) DEFAULT NULL,
+  `STAFF_DOB` date DEFAULT NULL,
+  `STAFF_PHONE` int(12) DEFAULT NULL,
+  `LEVEL` int(1) NOT NULL,
+  PRIMARY KEY (`STAFF_NO`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `STAFF`
+--
+
+LOCK TABLES `STAFF` WRITE;
+/*!40000 ALTER TABLE `STAFF` DISABLE KEYS */;
+INSERT INTO `STAFF` VALUES (138931,'Philip','Lubbe','954837216','PL','1975-07-15',837101690,5),(164589,'John','Smith','123456789','JS','1964-10-15',768915478,5),(530478,'Rebecca','Muller','678954321','RM','1969-07-02',852738815,3),(666693,'Veronica','Ngathi','987654321','VN','1961-08-31',823455677,2),(691525,'Busisiwe','Muller','543216789','BM','1976-05-02',837101640,4),(6883998,'Gavin','Zulu','123456789','GZ','1966-09-28',832630015,1);
+/*!40000 ALTER TABLE `STAFF` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `STUDENT`
+--
+
+DROP TABLE IF EXISTS `STUDENT`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `STUDENT` (
+  `STU_NUMBER` int(9) NOT NULL,
+  `STUDENT_FNAME` varchar(25) NOT NULL,
+  `STUDENT_LNAME` varchar(25) NOT NULL,
+  `STUDENT_INIT` char(3) DEFAULT NULL,
+  `STUDENT_DOB` date NOT NULL,
+  `STUDENT_PHONE` int(12) DEFAULT NULL,
+  PRIMARY KEY (`STU_NUMBER`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `STUDENT`
+--
+
+LOCK TABLES `STUDENT` WRITE;
+/*!40000 ALTER TABLE `STUDENT` DISABLE KEYS */;
+INSERT INTO `STUDENT` VALUES (647325,'Ahmed','Greeff','AG','1999-08-05',71795685),(1326514,'Nonkululeko','Dreyer','ND','1998-02-09',84576291),(1472165,'Babalwa','Mthethwa','BM','2000-12-12',72720785),(1571362,'Sibongile','Sithole','SS','1996-04-08',60433270),(1625493,'Rebecca','Marshall','RM','1999-11-03',75553244),(1876224,'Thabo','Dlamini','TD','1997-07-21',79855121);
+/*!40000 ALTER TABLE `STUDENT` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2020-06-05  3:01:36

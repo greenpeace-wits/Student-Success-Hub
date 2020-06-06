@@ -41,17 +41,18 @@ export class SignInPage implements OnInit {
     if (this.validateInputs()) {
       this.authService.signin(this.postData).subscribe(
         (res: any) => {
-          if(!(res.error)){
-            this.storageService.store(AuthConstants.AUTH, res);
-            this.router.navigate(['home']);
-          }
-          else {
-          this.toastService.presentToast("Incorrect username or password");
-          }
+          this.storageService.store(AuthConstants.AUTH, res);
+          this.router.navigate(['home']);
         },
         (error: any) => {
-        this.toastService.presentToast("Network connection error.")
-      })
+          console.log(error)
+          if (error.status != 401){
+            this.toastService.presentToast("Network error.");
+          }
+          else {
+            this.toastService.presentToast(error.error);
+          }
+      });
     }
     else {
       if (this.postData.witsemail.trim().length == 0 && this.postData.password.trim().length == 0) {
