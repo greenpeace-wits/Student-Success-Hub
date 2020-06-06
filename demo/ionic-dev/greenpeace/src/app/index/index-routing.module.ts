@@ -18,9 +18,8 @@ export const routes: Routes = [
       },
       {
         path: '',
-        loadChildren: () => import('../pages/signin/signin.module').then(
-          m => m.SignInPageModule
-        )
+        redirectTo: 'signin',
+        pathMatch: 'full'
       }
     ]
   }

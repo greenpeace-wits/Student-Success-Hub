@@ -57,7 +57,7 @@ describe('AppRoutingModule', () => {
     router = TestBed.get(Router);
   }));
 
-  it('should have 3 routes', () => {
+  it('should have 2 routes', () => {
     expect(router.config.length).toBe(2);
   });
 
@@ -71,6 +71,7 @@ describe('AppRoutingModule', () => {
 
   describe('/ route', () => {
     it('should have a loadChildren() function', () => {
+      debugger;
       expect(router.config[0].loadChildren()).toBeDefined();
     });
   });

@@ -30,11 +30,9 @@ describe('DashboardPage', () => {
   it('should have an ngOnInit() function', () => {
     expect(component.ngOnInit).toBeTruthy();
   });
-
   it('should have a displayUserData property', () => {
-    expect(component.displayUserData).toBeDefined();
+    expect(component.hasOwnProperty('displayUserData')).toBeTruthy();
   });
-
   it('should have at least one <ion-header> tag', () => {
     expect(fixture.nativeElement.querySelector('ion-header')).toBeTruthy();
   });
@@ -61,32 +59,32 @@ describe('DashboardPage', () => {
 
 
   describe('displayUserData', () => {
-    it('should be empty before ngOnInit() is called', () => {
-      expect(component.displayUserData).toBe('');
+    it('should be undefined before ngOnInit() is called',() => {
+      expect(component.displayUserData).toBeUndefined();
     });
 
-  let authService: AuthService;
-  it('should be empty before ngOnInit() is called', (done) => {
-      authService = TestBed.get(AuthService);
-      authService.userData$ = new BehaviorSubject<any>({name: "Andy"});
-      component.ngOnInit();
-      expect(component.displayUserData).toEqual({name: "Andy"});
-      done();
-    });
+    let authService: AuthService;
+    it('should have the value of authService.userData$.user before ngOnInit() is called', (done) => {
+        authService = TestBed.get(AuthService);
+        authService.userData$ = new BehaviorSubject<any>({user:{STAFF_FNAME: "Andy"}});
+        component.ngOnInit();
+        expect(component.displayUserData).toEqual({STAFF_FNAME: "Andy"});
+        done();
+      });
   });
 
   describe('<h2>', () => {
     it('should have the text "Hello, " before ngOnInit() is called', () => {
-      expect(fixture.nativeElement.querySelector('h2').textContent).toBe("Hello, ");
+      expect(fixture.nativeElement.querySelector('h2').textContent).toBe("Hello, .");
     });
 
     let authService: AuthService;
-    it('should have the text "Hello, Andy" after ngOnInit() is called with authService.userData$ = {name: "Andy"}', (done) => {
+    it('should have the text "Hello, Andy" after ngOnInit() is called with authService.userData$.user = {name: "Andy"}', (done) => {
       authService = TestBed.get(AuthService);
-      authService.userData$ = new BehaviorSubject<any>({name: "Andy"});
+      authService.userData$ = new BehaviorSubject<any>({user:{STAFF_FNAME: "Andy"}});
       component.ngOnInit();
       fixture.detectChanges();
-      expect(fixture.nativeElement.querySelector('h2').textContent).toBe("Hello, Andy");
+      expect(fixture.nativeElement.querySelector('h2').textContent).toBe("Hello, Andy.");
       done();
     });
   });

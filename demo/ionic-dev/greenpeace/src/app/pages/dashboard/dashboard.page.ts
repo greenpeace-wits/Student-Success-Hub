@@ -13,8 +13,8 @@ export class DashboardPage implements OnInit {
 
   ngOnInit() {
     this.authService.userData$.subscribe((res: any) => {
-      this.displayUserData = res;
-    })
+      this.displayUserData = res.user;
+    });
   }
 
 }
