@@ -7,6 +7,7 @@ import { AuthService } from '../services/auth.service';
 
 describe('UserDataService', () => {
   let resolver: UserDataResolver;
+  let authService: AuthService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -23,5 +24,12 @@ describe('UserDataService', () => {
 
   it('should have a resolve() function', () => {
     expect(resolver.resolve).toBeTruthy();
+  });
+
+  it('should call authService.getUserData when resolve() function is run', () => {
+    authService = TestBed.get(AuthService);
+    spyOn(authService,'getUserData');
+    resolver.resolve();
+    expect(authService.getUserData).toHaveBeenCalled();
   });
 });

@@ -4,7 +4,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpService } from './http.service';
 
 describe('HttpService', () => {
-  let service: HttpService
+  let httpService: HttpService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -12,17 +12,21 @@ describe('HttpService', () => {
       providers: [HttpService]
     });
 
-    service = TestBed.get(HttpService);
+    httpService = TestBed.get(HttpService);
   
   })
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    expect(httpService).toBeTruthy();
   });
 
   it('should have a post function', () => {
-    expect(service.post).toBeTruthy();
+    expect(httpService.post).toBeTruthy();
   });
 
-  //TODO: add more tests
+  it('should call httpClient.post when post() function is run', () => {
+    spyOn(httpService,'post');
+    httpService.post('',null);
+    expect(httpService.post).toHaveBeenCalled();
+  });
 });
