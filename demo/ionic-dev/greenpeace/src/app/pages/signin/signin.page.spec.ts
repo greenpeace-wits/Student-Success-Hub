@@ -272,14 +272,14 @@ describe('SignInPage', () => {
       done();
     });
 
-    it('should call toastService.presentToast() with the text "Incorrect username or password" if validateInputs() is true but the response from authService.signin() is an error', (done) => {
+    it('should call toastService.presentToast() with the text "error" if validateInputs() is true but the response from authService.signin() is an error with the value \'this\'', (done) => {
       let authService = TestBed.get(AuthService);
       let toastService = TestBed.get(ToastService);
       spyOn(toastService,'presentToast');
       spyOn(component,'validateInputs').and.returnValue(true);
-      spyOn(authService,'signin').and.returnValue(of({error: true}));
+      spyOn(authService,'signin').and.returnValue(throwError({status: 401, error: "this"}));
       component.loginAction();
-      expect(toastService.presentToast).toHaveBeenCalledWith("Incorrect username or password");
+      expect(toastService.presentToast).toHaveBeenCalledWith("this");
       done();
     });
 
@@ -288,7 +288,7 @@ describe('SignInPage', () => {
       let storageService = TestBed.get(StorageService);
       spyOn(storageService,'store');
       spyOn(component,'validateInputs').and.returnValue(true);
-      spyOn(authService,'signin').and.returnValue(of({error: false}));
+      spyOn(authService,'signin').and.returnValue(of({}));
       component.loginAction();
       expect(storageService.store).toHaveBeenCalled();
       done();
@@ -305,14 +305,14 @@ describe('SignInPage', () => {
       done();
     });
     
-    it('should call toastService.presentToast() with the text "Network connection error." if validateInputs() is true but authService.signin() is could not contact the server', (done) => {
+    it('should call toastService.presentToast() with the text "Network error." if validateInputs() is true but authService.signin() is could not contact the server', (done) => {
       let authService = TestBed.get(AuthService);
       let toastService = TestBed.get(ToastService);
       spyOn(toastService,'presentToast');
       spyOn(authService,'signin').and.returnValue(throwError({}));
       spyOn(component,'validateInputs').and.returnValue(true);
       component.loginAction();
-      expect(toastService.presentToast).toHaveBeenCalledWith("Network connection error.");
+      expect(toastService.presentToast).toHaveBeenCalledWith("Network error.");
       done();
     });
 

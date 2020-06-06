@@ -1,13 +1,3 @@
-/*UNTESTED
-- Guards routing to protected routes
-- If a user has authentication, it will send them to their requested route
-- If a user does not have authentication, it will send them to the default route
-- To check for authentication, the guard checks the storage for a storage key
-held in auth constants.
-  - If the key exists in storage, the key is returned.
-  - If the key does not exist in storage, the storage returns false.
-*/
-
 import { RouterTestingModule } from "@angular/router/testing";
 import { Router } from '@angular/router';
 import { TestBed, inject } from '@angular/core/testing';

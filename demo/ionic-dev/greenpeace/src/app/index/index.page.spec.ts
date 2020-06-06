@@ -67,8 +67,13 @@ describe('IndexRoutingModule', () => {
   });
 
   describe('/ route', () => {
-    it('should have a loadChildren() function', () => {
-      expect(router.config[0].children[1].loadChildren()).toBeDefined();
+    it('should have a redirectTo property', () => {
+      debugger;
+      expect(router.config[0].children[1].hasOwnProperty('redirectTo')).toBeTruthy();
+    });
+
+    it('should redirect to sign in', () => {
+      expect(router.config[0].children[1].redirectTo).toBe("signin");
     });
   });
 });

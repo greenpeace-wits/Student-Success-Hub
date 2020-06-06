@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from "@angular/router/testing";
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { IonicModule } from '@ionic/angular';
 
+import { AuthService } from 'src/app/services/auth.service';
 import { CourseManagementPage } from './course-management.page';
 
 describe('CourseManagementPage', () => {
@@ -10,7 +13,8 @@ describe('CourseManagementPage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CourseManagementPage ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(), RouterTestingModule, HttpClientTestingModule],
+      providers: [AuthService]
     }).compileComponents();
 
     fixture = TestBed.createComponent(CourseManagementPage);
@@ -25,6 +29,10 @@ describe('CourseManagementPage', () => {
   it('should have a ngOnInit() function', () => {
     expect(component.ngOnInit).toBeTruthy();
   });
+
+  // it('should have a displayStudents property', () => {
+  //   expect(component.hasOwnProperty('displayStudents')).toBeTruthy();
+  // });
 
   it('should have at least one <ion-header> tag', () => {
     expect(fixture.nativeElement.querySelector('ion-header')).toBeTruthy();
