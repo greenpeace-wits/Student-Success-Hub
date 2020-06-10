@@ -1,5 +1,98 @@
-<ion-header>
+ <ion-content>
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Course Management</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
   <ion-toolbar>
-    <ion-title>Course Management</ion-title>
+    <ion-searchbar [(ngModel)] = "searchString" (ionChange)="filter()"></ion-searchbar>
   </ion-toolbar>
-</ion-header>
+
+  <ion-list>
+    <ng-template [ngIf]="displayData == false" [ngIfElse]="viewMarks">
+      <div *ngFor="let student of displayList" >
+      <ion-card *ngIf="student.FLAG == 0 else danger" button (click)="getMarks(student.STU_NUMBER)">
+        <ion-card-header>
+          <b>{{ student.STU_NUMBER }}</b> {{ student.STUDENT_LNAME + ', ' + student.STUDENT_FNAME}}
+        </ion-card-header>
+      </ion-card>
+      <ng-template #danger>
+        <ion-card color="danger" button (click)="getMarks(student.STU_NUMBER)">
+          <ion-card-header>
+            <b>{{ student.STU_NUMBER }}</b> {{ student.STUDENT_LNAME + ', ' + student.STUDENT_FNAME}}
+          </ion-card-header>
+        </ion-card>
+    </ng-template>
+    </div>
+    </ng-template>
+    <ng-template #viewMarks>
+      <ion-card>
+        <ion-card-header *ngFor="let student of markData.student">
+          <ion-card-title>
+            <b>{{ student.STU_NUMBER }}</b> {{ student.STUDENT_LNAME + ', ' + student.STUDENT_FNAME}}
+            <ion-button fill=clear color=medium size=small (click)="closeData()">
+              <ion-icon slot="icon-only" name="close-circle" size=small></ion-icon>
+            </ion-button>
+          </ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content *ngIf="markData.data as marks">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                TEST 1
+              </ion-col>
+              <ion-col>
+                TEST 2
+              </ion-col>
+              <ion-col>
+                TUT TEST 1
+              </ion-col>
+              <ion-col>
+                TUT TEST 2
+              </ion-col>
+              <ion-col>
+                ASSIGNMENT
+              </ion-col>
+              <ion-col>
+                EXAM 
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col>
+                <ion-input [(ngModel)]="markDataDupe.data.TEST_1" placeholder='{{ marks.TEST_1 }}'></ion-input>
+              </ion-col>
+              <ion-col>
+                <ion-input [(ngModel)]="markDataDupe.data.TEST_2" placeholder='{{ marks.TEST_2 }}'></ion-input>
+              </ion-col>
+              <ion-col>
+                <ion-input [(ngModel)]="markDataDupe.data.TUT_TEST1" placeholder='{{ marks.TUT_TEST1 }}'></ion-input>
+              </ion-col>
+              <ion-col>
+                <ion-input [(ngModel)]="markDataDupe.data.TUT_TEST2" placeholder='{{ marks.TUT_TEST2 }}'></ion-input>
+              </ion-col>
+              <ion-col>
+                <ion-input [(ngModel)]="markDataDupe.data.ASSIGNMENT" placeholder='{{ marks.ASSIGNMENT }}'></ion-input>
+              </ion-col>
+              <ion-col>
+                <ion-input [(ngModel)]="markDataDupe.data.EXAM" placeholder='{{ marks.EXAM }}'></ion-input>
+              </ion-col>
+          </ion-row>
+            <ion-button (click)="saveChanges()">
+              Save
+            </ion-button>
+            <ion-button colour=medium (click)="discardChanges()" >
+              Discard
+            </ion-button>
+
+          </ion-grid>
+
+        </ion-card-content>
+      </ion-card>
+    </ng-template>
+  </ion-list>
+
+</ion-content>

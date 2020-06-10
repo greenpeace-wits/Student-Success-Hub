@@ -29,6 +29,14 @@ export class AuthService {
     return this.httpService.post('signin', postData)
   }
 
+  getCourseData (postData: any): Observable<any> {
+    return this.httpService.post('home/course-management:get', postData)
+  }
+
+  updateMarks (postData: any): Observable<any> {
+    return this.httpService.post('home/course-management:update', postData)
+  }
+
   signout () {
     this.storageService.removeItem(AuthConstants.AUTH).then(res => {
       this.userData$.next('');
