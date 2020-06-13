@@ -21,6 +21,7 @@ export class CourseManagementPage implements OnInit {
       this.studentList = res.students; 
       this.displayList = this.studentList;
       this.markData = {};
+      this.markDataDupe = {};
       this.displayData = false;
       this.editData = false;
     });

@@ -90,5 +90,12 @@ describe('SettingsPage', () => {
       let spy = spyOn(component,'logoutAction');
       expect(component.logoutAction).not.toHaveBeenCalled();
     });
+
+    it('should call authService.signout()',()=>{
+      let authService = TestBed.get(AuthService);
+      spyOn(authService,'signout');
+      fixture.nativeElement.querySelector('ion-button').click();
+      expect(authService.signout).toHaveBeenCalled();
+    })
   });
 });
