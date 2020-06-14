@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { DashboardPage } from './dashboard.page';
 import { AuthService } from 'src/app/services/auth.service';
 import { BehaviorSubject } from 'rxjs';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('DashboardPage', () => {
   let component: DashboardPage;
@@ -14,6 +15,7 @@ describe('DashboardPage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ DashboardPage ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [IonicModule.forRoot(), RouterTestingModule, HttpClientTestingModule],
       providers: [AuthService]
     }).compileComponents();
@@ -51,6 +53,10 @@ describe('DashboardPage', () => {
 
   it('should have at least one <h2> tag', () => {
     expect(fixture.nativeElement.querySelector('h2')).toBeTruthy();
+  });
+
+  it('should have at least one <app-logo>', () => {
+    expect(fixture.nativeElement.querySelector('app-logo')).toBeTruthy();
   });
 
   it('should have at least one <ion-title> tag', () => {
