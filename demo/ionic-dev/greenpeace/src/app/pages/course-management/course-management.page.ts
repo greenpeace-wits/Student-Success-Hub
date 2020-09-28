@@ -29,21 +29,23 @@ export class CourseManagementPage implements OnInit {
 
   getMarks(student_number){
     this.displayData = true;
-    this.authService.getCourseData(student_number).subscribe(
-      (res: any) => {
-        this.markData = {student: this.studentList.filter(function (student){
-          return student.STU_NUMBER.toString().includes(student_number.toString())
-        }),data:Object.values(res)[0]};
-        for (var m in this.markData.data){
+    return ''
+
+    // this.authService.getCourseData(student_number).subscribe(
+    //   (res: any) => {
+    //     this.markData = {student: this.studentList.filter(function (student){
+    //       return student.STU_NUMBER.toString().includes(student_number.toString())
+    //     }),data:Object.values(res)[0]};
+    //     for (var m in this.markData.data){
           
-          this.markData.data[m] = Number(this.markData.data[m])
-        }
-        this.markDataDupe = this.markData;
-      },
-      (error: any) => {
-        console.log(error)
-        this.displayData = false;
-    });
+    //       this.markData.data[m] = Number(this.markData.data[m])
+    //     }
+    //     this.markDataDupe = this.markData;
+    //   },
+    //   (error: any) => {
+    //     console.log(error)
+    //     this.displayData = false;
+    // });
   }
 
   closeData(){
