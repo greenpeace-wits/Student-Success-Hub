@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { ToastService } from './toast.service';
 
-fdescribe('ToastService', () => {
+describe('ToastService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
