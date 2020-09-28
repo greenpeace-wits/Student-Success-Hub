@@ -204,6 +204,12 @@ describe('HomeRoutingModule', () => {
     });
   });
 
+  describe('/settings route', () => {
+    it('should have a loadChildren() function', () => {
+      expect(router.config[0].children[3].loadChildren()).toBeDefined();
+    });
+  });
+
   describe('/course-management route', () => {
     it('should have a loadChildren() function', () => {
       expect(router.config[0].children[2].loadChildren()).toBeDefined();
