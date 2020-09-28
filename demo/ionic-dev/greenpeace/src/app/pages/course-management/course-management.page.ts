@@ -70,7 +70,7 @@ export class CourseManagementPage implements OnInit {
     this.editData = false;
     this.authService.updateMarks(this.markData).subscribe(
       (res: any) => {
-        this.toastService.presentToast("Update successful.");
+        // this.toastService.presentToast("Update successful.");
       });
   }
 

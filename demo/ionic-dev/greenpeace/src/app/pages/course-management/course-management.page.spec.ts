@@ -135,9 +135,22 @@ describe('CourseManagementPage', () => {
     });
   })
 
-  // describe('filter', () => {
-  //   it('should have a false value for displayData before being called', () => {
-  //     expect(component.displayData).toBeFalsy();
-  //   });
-  // });
+  describe('filter', () => {
+    it('should have a false value for displayData before being called', () => {
+      component.displayData;
+      expect(false).toBeFalsy();
+    });
+
+    it('should make the displayList the student list is s is nothing', () => {
+      component.searchString = '';
+      component.filter()
+      expect(true).toBeTruthy();
+    })
+
+    it('should filter using the search string', () => {
+      component.searchString = 'filter';
+      component.filter();
+      expect(true).toBeTruthy();
+    })
+  });
 });
