@@ -17,9 +17,7 @@ export class HomeGuard implements CanActivate {
           this.router.navigate(['signin']);
           resolve(false);
         }
-      }).catch(err => {
-        resolve(false);
-      });
+      })
     });
   }
 
