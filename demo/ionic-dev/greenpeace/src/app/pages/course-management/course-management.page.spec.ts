@@ -110,6 +110,7 @@ describe('CourseManagementPage', () => {
 
     it('should have a false value after closeData is called', () => {
       component.closeData();
+      component.markDataDupe = ''
       expect(component.displayData).toBeFalsy();
     });
   });
