@@ -17,9 +17,7 @@ export class IndexGuard implements CanActivate {
         else {
           resolve(true);
         }
-      }).catch(err => {
-        resolve(false);
-      });
+      })
     });
   }
 
